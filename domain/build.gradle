@@ -1,0 +1,11 @@
+apply from: "$rootDir/gradleScripts/libraryAndroid.gradle"
+
+dependencies {
+    implementation(
+            project(':data'),
+            daggerDependencies.main
+    )
+    kapt(
+            daggerDependencies.annotationProcessor
+    )
+}

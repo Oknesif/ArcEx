@@ -1,0 +1,6 @@
+package com.github.domain.enteties
+
+data class Post(
+        val user: String
+
+)

@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply from: "$rootDir/gradleScripts/androidConfiguration.gradle"
+
+android {
+    defaultConfig {
+        applicationId "com.github.arcex"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    kapt(
+            daggerDependencies.annotationProcessor
+    )
+
+    implementation(
+            project(':data'),
+            project(':domain'),
+            project(':presentation'),
+
+            kotlinDependencies.stdlib,
+            daggerDependencies.main
+    )
+}

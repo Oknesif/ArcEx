@@ -1,0 +1,9 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
+apply from: "$rootDir/gradleScripts/androidConfiguration.gradle"
+
+dependencies {
+    implementation kotlinDependencies.stdlib
+
+}

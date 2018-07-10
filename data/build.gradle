@@ -1,0 +1,17 @@
+apply from: "$rootDir/gradleScripts/libraryAndroid.gradle"
+
+dependencies {
+    kapt(
+            androidArchDependencies.roomAnnotation,
+            daggerDependencies.annotationProcessor
+    )
+    implementation(
+            daggerDependencies.main,
+            androidArchDependencies.roomRuntime,
+            androidArchDependencies.roomRx2,
+            rxJavaDependencies.main,
+            retrofitDependencies.main,
+            retrofitDependencies.gson,
+            retrofitDependencies.rxJavaAdapter
+    )
+}

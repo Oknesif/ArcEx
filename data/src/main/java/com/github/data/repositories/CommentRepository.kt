@@ -1,0 +1,19 @@
+package com.github.data.repositories
+
+import com.github.data.DbDao
+import com.github.data.entities.CommentData
+import com.github.data.remote.Api
+import io.reactivex.Single
+
+class CommentRepository(
+        private val dbDao: DbDao,
+        private val api: Api
+) {
+
+    fun getUsers(): Single<List<CommentData>> {
+        return dbDao.getComments()
+                .map { if (it.isEmpty()) throw NoSuchElementException() else it }
+                .firstOrError()
+                .onErrorResumeNext { api.getComments().doOnSuccess { dbDao.insertComments(it) } }
+    }
+}
