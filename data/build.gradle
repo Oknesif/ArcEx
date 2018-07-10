@@ -6,12 +6,14 @@ dependencies {
             daggerDependencies.annotationProcessor
     )
     implementation(
+            project(':dagger_utils'),
             daggerDependencies.main,
             androidArchDependencies.roomRuntime,
             androidArchDependencies.roomRx2,
             rxJavaDependencies.main,
             retrofitDependencies.main,
             retrofitDependencies.gson,
-            retrofitDependencies.rxJavaAdapter
+            retrofitDependencies.rxJavaAdapter,
+            okHttpDependency
     )
 }

@@ -2,7 +2,7 @@ ext {
 
     /* kotlin_version is declared in root build.gradle */
     kotlinDependencies = [
-            stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+            stdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     ]
 
     arch_version = "1.1.1"
@@ -21,8 +21,8 @@ ext {
     ]
 
     androidSupportDependencies = [
-            constraint: "com.android.support.constraint:constraint-layout:1.1.2",
-            appCompat : "com.android.support:appcompat-v7:27.1.1"
+            constraint: 'com.android.support.constraint:constraint-layout:1.1.2',
+            appCompat : 'com.android.support:appcompat-v7:27.1.1'
     ]
 
     testDependencies = [

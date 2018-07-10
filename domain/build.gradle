@@ -2,6 +2,7 @@ apply from: "$rootDir/gradleScripts/libraryAndroid.gradle"
 
 dependencies {
     implementation(
+            project(':dagger_utils'),
             project(':data'),
             daggerDependencies.main
     )
