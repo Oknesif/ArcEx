@@ -6,12 +6,13 @@ import android.widget.TextView
 import com.github.domain.interactors.PostInteractor
 import com.github.presentation.dagger.PostListComponentCreator
 import com.github.presentation.dagger.PostListModule
+import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var some: PostInteractor
+    lateinit var postInteractor: PostInteractor
     @Inject
     lateinit var coolString: String
 
@@ -22,6 +23,12 @@ class MainActivity : AppCompatActivity() {
                 .createPostListComponent(PostListModule())
                 .inject(this)
 
-        findViewById<TextView>(R.id.test_view).text = coolString
+
+        postInteractor
+                .loadSomething()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { post ->
+                    findViewById<TextView>(R.id.test_view).text = coolString + post.body
+                }
     }
 }

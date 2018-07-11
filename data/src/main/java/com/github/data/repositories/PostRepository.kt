@@ -1,5 +1,6 @@
 package com.github.data.repositories
 
+import android.util.Log
 import com.github.data.DbDao
 import com.github.data.entities.PostData
 import com.github.data.remote.Api
@@ -9,10 +10,13 @@ class PostRepository(private val dbDao: DbDao,
                      private val api: Api
 ) {
 
-    fun getUsers(): Single<List<PostData>> {
+    fun getPosts(): Single<List<PostData>> {
         return dbDao.getPosts()
                 .map { if (it.isEmpty()) throw NoSuchElementException() else it }
                 .firstOrError()
-                .onErrorResumeNext { api.getPosts().doOnSuccess { dbDao.insertPosts(it) } }
+                .onErrorResumeNext {
+                    Log.d("ArcExTag", "Load from api")
+                    api.getPosts().doOnSuccess { dbDao.insertPosts(it) }
+                }
     }
 }

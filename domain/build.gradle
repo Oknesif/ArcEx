@@ -4,9 +4,9 @@ dependencies {
     implementation(
             project(':dagger_utils'),
             project(':data'),
+            rxJavaDependencies.main,
             daggerDependencies.main
     )
-    kapt(
-            daggerDependencies.annotationProcessor
-    )
+
+    kapt daggerDependencies.annotationProcessor
 }

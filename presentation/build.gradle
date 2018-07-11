@@ -4,6 +4,8 @@ dependencies {
     implementation(
             project(':dagger_utils'),
             project(':domain'),
+            rxJavaDependencies.main,
+            rxJavaDependencies.android,
             daggerDependencies.main,
             androidSupportDependencies.constraint,
             androidSupportDependencies.appCompat
