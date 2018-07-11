@@ -1,6 +1,7 @@
 package com.github.arc.ex
 
 import android.app.Application
+import com.github.arc.ex.dagger.AppComponent
 import com.github.arc.ex.dagger.AppModule
 import com.github.arc.ex.dagger.DaggerAppComponent
 import com.github.data.dagger.DataModule
@@ -13,23 +14,19 @@ class ArcExApplication : Application(), PostListComponentCreator {
 
     override fun createPostListComponent(postListModule: PostListModule): PostListComponent {
         return appComponent
-                .domainComponent
+                .domainComponent()
                 .domainModule(DomainModule())
                 .dataModule(DataModule())
                 .build()
-                .postListComponent
+                .postListComponent()
                 .postModule(postListModule)
                 .build()
     }
 
-    val appComponent by lazy {
+    private val appComponent: AppComponent by lazy {
         DaggerAppComponent
                 .builder()
                 .appModule(AppModule(this.applicationContext))
                 .build()
-    }
-
-    override fun onCreate() {
-        super.onCreate()
     }
 }

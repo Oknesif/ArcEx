@@ -10,7 +10,7 @@ import dagger.Subcomponent
 @Subcomponent(modules = [DomainModule::class, DataModule::class])
 interface DomainComponent {
 
-    var postListComponent: PostListComponent.Builder
+    fun postListComponent(): PostListComponent.Builder
 
     @Subcomponent.Builder
     interface Builder {

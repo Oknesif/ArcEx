@@ -7,6 +7,6 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
 
-    var domainComponent: DomainComponent.Builder
+    fun domainComponent(): DomainComponent.Builder
 
 }

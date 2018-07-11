@@ -2,6 +2,7 @@ package com.github.presentation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.github.domain.interactors.PostInteractor
 import com.github.presentation.dagger.PostListComponentCreator
 import com.github.presentation.dagger.PostListModule
@@ -21,6 +22,6 @@ class MainActivity : AppCompatActivity() {
                 .createPostListComponent(PostListModule())
                 .inject(this)
 
-        val string: String = "sldkfjs"
+        findViewById<TextView>(R.id.test_view).text = coolString
     }
 }

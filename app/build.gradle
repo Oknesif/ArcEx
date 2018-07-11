@@ -21,7 +21,9 @@ android {
 }
 
 dependencies {
-    kapt daggerDependencies.annotationProcessor
+    kapt (
+            daggerDependencies.annotationProcessor,
+    )
 
     implementation(
             project(':dagger_utils'),
