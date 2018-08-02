@@ -31,30 +31,3 @@ class FragmentModel : ViewModel() {
         disposable?.dispose()
     }
 }
-
-
-abstract class BaseFragment : Fragment() {
-
-    private var viewDisposable: Disposable? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    /**
-     * UseCase disposable lives longer than ViewDisposable
-     */
-    abstract fun subscribeUseCase(): Disposable
-
-    abstract fun subscribeView(): Disposable
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewDisposable = subscribeView()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewDisposable?.dispose()
-    }
-}

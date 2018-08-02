@@ -6,6 +6,6 @@ sealed class PostsState {
 
     class ShowPosts(val posts: List<Post>) : PostsState()
 
-    class Loading : PostsState()
+    object Loading : PostsState()
 }
 

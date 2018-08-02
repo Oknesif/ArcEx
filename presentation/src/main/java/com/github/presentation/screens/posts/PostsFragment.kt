@@ -1,62 +1,37 @@
 package com.github.presentation.screens.posts
 
-import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.github.presentation.FragmentModel
+import com.github.presentation.BaseFragment
 import com.github.presentation.MainActivity
 import com.github.presentation.R
-import com.github.presentation.ViewModelFactory
+import com.github.presentation.Subscribable
 import com.github.presentation.screens.posts.dagger.PostsModule
-import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.Subject
 import javax.inject.Inject
 
-class PostsFragment : Fragment() {
-
-    private var viewSubscription: Disposable? = null
+class PostsFragment : BaseFragment() {
     @Inject
-    lateinit var binder: Binder
+    lateinit var postsUseCase: PostsUseCase
     @Inject
     lateinit var state: Subject<PostsState>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onInject() {
         (activity as MainActivity).activityComponent
                 .postsComponent()
                 .postModule(PostsModule())
                 .build()
                 .inject(this)
-
-        ViewModelProviders
-                .of(this, ViewModelFactory())
-                .get(FragmentModel::class.java)
-                .init { createBinder().bind() }
     }
 
-    fun createBinder(): Binder {
-        return binder
-    }
-
-    fun createView(view: View): PostsView {
+    override fun createView(view: View): Subscribable {
         return PostsView(view, layoutInflater, state)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.posts_fragment, container, false)
+    override fun createUseCase(): Subscribable {
+        return postsUseCase
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewSubscription = createView(view).bind()
+    override fun provideLayoutId(): Int {
+        return R.layout.posts_fragment
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewSubscription?.dispose()
-    }
-
 }
