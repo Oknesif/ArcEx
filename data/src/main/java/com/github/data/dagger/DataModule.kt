@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 
 @Module
 class DataModule {
@@ -51,7 +52,7 @@ class DataModule {
 
     @Provides
     fun provideDatabase(
-            appContext: Context
+            @Named("application") appContext: Context
     ): Database {
         return Room.databaseBuilder(
                 appContext,

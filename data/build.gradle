@@ -6,7 +6,7 @@ dependencies {
             daggerDependencies.annotationProcessor
     )
     implementation(
-            project(':dagger_utils'),
+            project(':utils'),
             daggerDependencies.main,
             androidArchDependencies.roomRuntime,
             androidArchDependencies.roomRx2,

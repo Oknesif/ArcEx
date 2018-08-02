@@ -10,19 +10,24 @@ ext {
             roomRuntime   : "android.arch.persistence.room:runtime:$arch_version",
             roomAnnotation: "android.arch.persistence.room:compiler:$arch_version",
             roomRx2       : "android.arch.persistence.room:rxjava2:$arch_version",
-            archCore      : "android.arch.core:runtime:$arch_version"
+            archCore      : "android.arch.core:runtime:$arch_version",
+            lifecycle     : "android.arch.lifecycle:extensions:$arch_version"
     ]
 
     rxJava_version = "2.1.16"
     rxAndroid_version = '2.0.2'
+    rxKotlin_version = '2.2.0'
     rxJavaDependencies = [
             main   : "io.reactivex.rxjava2:rxjava:$rxJava_version",
-            android: "io.reactivex.rxjava2:rxandroid:$rxAndroid_version"
+            android: "io.reactivex.rxjava2:rxandroid:$rxAndroid_version",
+            kotlin : "io.reactivex.rxjava2:rxkotlin:$rxKotlin_version"
     ]
 
+    support_version = "27.1.1"
     androidSupportDependencies = [
+            recycler  : "com.android.support:recyclerview-v7:$support_version",
             constraint: 'com.android.support.constraint:constraint-layout:1.1.2',
-            appCompat : 'com.android.support:appcompat-v7:27.1.1'
+            appCompat : "com.android.support:appcompat-v7:$support_version"
     ]
 
     testDependencies = [

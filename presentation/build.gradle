@@ -2,15 +2,18 @@ apply from: "$rootDir/gradleScripts/libraryAndroid.gradle"
 
 dependencies {
     implementation(
-            project(':dagger_utils'),
+            project(':utils'),
             project(':domain'),
             rxJavaDependencies.main,
-            rxJavaDependencies.android,
+            rxJavaDependencies.kotlin,
             daggerDependencies.main,
+            rxJavaDependencies.android,
             androidSupportDependencies.constraint,
-            androidSupportDependencies.appCompat
+            androidSupportDependencies.appCompat,
+            androidSupportDependencies.recycler,
     )
-    kapt(
-            daggerDependencies.annotationProcessor
-    )
+
+    api(androidArchDependencies.lifecycle) //Due to conflict with supportFragment dependency
+
+    kapt daggerDependencies.annotationProcessor
 }

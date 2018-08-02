@@ -26,15 +26,15 @@ dependencies {
     )
 
     implementation(
-            project(':dagger_utils'),
+            project(':utils'),
             project(':data'),
             project(':domain'),
             project(':presentation'),
 
+            rxJavaDependencies.main,
             androidSupportDependencies.appCompat,
             androidArchDependencies.archCore,
             okHttpDependency,
-
             kotlinDependencies.stdlib,
             daggerDependencies.main
     )

@@ -1,1 +1,1 @@
-include ':app', ':domain', ':data', ':presentation', ':dagger_utils'
+include ':app', ':domain', ':data', ':presentation', ':utils'

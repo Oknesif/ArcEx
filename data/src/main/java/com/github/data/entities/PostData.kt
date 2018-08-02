@@ -1,13 +1,12 @@
 package com.github.data.entities
 
 import android.arch.persistence.room.Entity
-import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.PrimaryKey
 
 @Entity
 class PostData(
-        val userId: Int,
+        val userId: Int?,
         @PrimaryKey val id: Int,
-        val title: String,
-        val body: String
+        val title: String?,
+        val body: String?
 )

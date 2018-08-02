@@ -1,5 +1,6 @@
 apply plugin: 'java'
 
 dependencies {
+    implementation(kotlinDependencies.stdlib)
     compile group: 'javax.inject', name: 'javax.inject', version: '1'
 }

@@ -1,17 +1,18 @@
 package com.github.arc.ex.dagger
 
 import android.content.Context
+import com.github.presentation.dagger.ActivityComponent
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import javax.inject.Named
 
-@Module
+@Module(subcomponents = [ActivityComponent::class])
 class AppModule(
         private val appContext: Context
 ) {
 
     @Provides
-    @Singleton
+    @Named("application")
     fun providerAppContext(): Context {
         return appContext
     }

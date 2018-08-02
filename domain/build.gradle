@@ -2,9 +2,10 @@ apply from: "$rootDir/gradleScripts/libraryAndroid.gradle"
 
 dependencies {
     implementation(
-            project(':dagger_utils'),
+            project(':utils'),
             project(':data'),
             rxJavaDependencies.main,
+            rxJavaDependencies.kotlin,
             daggerDependencies.main
     )
 
