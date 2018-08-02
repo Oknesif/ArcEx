@@ -29,9 +29,9 @@ class PostAdapter(
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val item = items[position]
-        holder.bodyText.text = item.body
+        holder.bodyText.text = item.postBody
         holder.view.setOnClickListener { itemClickListener(items[holder.adapterPosition]) }
-        avatarLoader.loadAvatar(item.userId, holder.imageView)
+        avatarLoader.loadAvatar(item.userName, holder.imageView)
     }
 }
 

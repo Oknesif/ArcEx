@@ -13,7 +13,6 @@ class PostRepository(
     fun getPosts(): Single<List<PostData>> {
         return dbDao.getPosts()
                 .map { if (it.isEmpty()) throw NoSuchElementException() else it }
-                .firstOrError()
-                .onErrorResumeNext { api.getPosts().doOnSuccess { dbDao.insertPosts(it) } }
+                .onErrorResumeNext { api.getPosts().doOnSuccess { posts -> dbDao.insertPosts(posts) } }
     }
 }

@@ -13,7 +13,6 @@ class UserRepository(
     fun getUsers(): Single<List<UserData>> {
         return dbDao.getUsers()
                 .map { if (it.isEmpty()) throw NoSuchElementException() else it }
-                .firstOrError()
-                .onErrorResumeNext { api.getUsers().doOnSuccess { dbDao.insertUsers(it) } }
+                .onErrorResumeNext { api.getUsers().doOnSuccess { users -> dbDao.insertUsers(users) } }
     }
 }

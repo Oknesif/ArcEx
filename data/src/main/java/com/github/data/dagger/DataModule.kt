@@ -5,7 +5,7 @@ import android.content.Context
 import com.github.data.Database
 import com.github.data.DbDao
 import com.github.data.remote.Api
-import com.github.data.repositories.CommentRepository
+import com.github.data.repositories.CommentsRepository
 import com.github.data.repositories.PostRepository
 import com.github.data.repositories.UserRepository
 import dagger.Module
@@ -25,8 +25,8 @@ class DataModule {
     fun provideCommentRepository(
             dbDao: DbDao,
             api: Api
-    ): CommentRepository {
-        return CommentRepository(dbDao, api)
+    ): CommentsRepository {
+        return CommentsRepository(dbDao, api)
     }
 
     @Singleton

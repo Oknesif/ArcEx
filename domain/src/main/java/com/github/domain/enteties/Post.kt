@@ -1,7 +1,8 @@
 package com.github.domain.enteties
 
 data class Post(
-        val user: String,
-        val body: String,
-        val userId: String
+        val userName: String,
+        val postBody: String,
+        val postTitle: String,
+        val comments: List<Comment>
 )
