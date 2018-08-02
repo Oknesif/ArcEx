@@ -6,9 +6,9 @@ import com.github.arc.ex.dagger.AppModule
 import com.github.arc.ex.dagger.DaggerAppComponent
 import com.github.data.dagger.DataModule
 import com.github.domain.dagger.DomainModule
-import com.github.presentation.dagger.ActivityComponent
-import com.github.presentation.dagger.ActivityComponentCreator
-import com.github.presentation.dagger.ActivityModule
+import com.github.presentation.activity.dagger.ActivityComponent
+import com.github.presentation.activity.dagger.ActivityComponentCreator
+import com.github.presentation.activity.dagger.ActivityModule
 
 class ArcExApplication : Application(), ActivityComponentCreator {
 

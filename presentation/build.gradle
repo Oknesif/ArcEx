@@ -4,6 +4,7 @@ dependencies {
     implementation(
             project(':utils'),
             project(':domain'),
+            glide,
             rxJavaDependencies.main,
             rxJavaDependencies.kotlin,
             daggerDependencies.main,

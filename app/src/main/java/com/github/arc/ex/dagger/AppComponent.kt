@@ -2,7 +2,7 @@ package com.github.arc.ex.dagger
 
 import com.github.data.dagger.DataModule
 import com.github.domain.dagger.DomainModule
-import com.github.presentation.dagger.ActivityComponent
+import com.github.presentation.activity.dagger.ActivityComponent
 import dagger.Component
 import javax.inject.Singleton
 

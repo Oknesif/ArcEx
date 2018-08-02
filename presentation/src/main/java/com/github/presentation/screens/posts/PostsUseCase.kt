@@ -1,8 +1,9 @@
 package com.github.presentation.screens.posts
 
 import com.github.domain.interactors.PostInteractor
-import com.github.presentation.Subscribable
+import com.github.presentation.architecture.components.Subscribable
 import com.github.presentation.reactivex.ArcSchedulers
+import com.github.scopes.FragmentScope
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.Subject
 import javax.inject.Inject

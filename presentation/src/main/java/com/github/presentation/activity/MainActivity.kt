@@ -1,11 +1,12 @@
-package com.github.presentation
+package com.github.presentation.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
-import com.github.presentation.dagger.ActivityComponent
-import com.github.presentation.dagger.ActivityComponentCreator
-import com.github.presentation.dagger.ActivityModule
+import com.github.presentation.R
+import com.github.presentation.activity.dagger.ActivityComponent
+import com.github.presentation.activity.dagger.ActivityComponentCreator
+import com.github.presentation.activity.dagger.ActivityModule
 import com.github.presentation.screens.posts.PostsFragment
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.github.presentation
+package com.github.presentation.architecture.components
 
 import io.reactivex.disposables.Disposable
 

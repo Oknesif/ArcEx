@@ -1,8 +1,8 @@
-package com.github.presentation.dagger
+package com.github.presentation.activity.dagger
 
-import android.content.Context
+import android.app.Activity
 import android.view.LayoutInflater
-import com.github.presentation.AppEvent
+import com.github.presentation.architecture.components.AppEvent
 import com.github.presentation.reactivex.ArcSchedulers
 import com.github.presentation.reactivex.ArcSchedulersImp
 import com.github.presentation.screens.posts.dagger.PostsComponent
@@ -15,7 +15,7 @@ import javax.inject.Named
 
 @Module(subcomponents = [PostsComponent::class])
 class ActivityModule(
-        private val context: Context
+        private val activity: Activity
 ) {
 
     @Provides
@@ -23,13 +23,12 @@ class ActivityModule(
     fun provideEventBus(): Subject<AppEvent> = PublishSubject.create()
 
     @Provides
-    @Named("activity")
     @ActivityScope
-    fun provideContext(): Context = context
+    fun provideActivity(): Activity = activity
 
     @Provides
     @ActivityScope
-    fun provideLayoutInflater(): LayoutInflater = LayoutInflater.from(context)
+    fun provideLayoutInflater(): LayoutInflater = LayoutInflater.from(activity)
 
     @Provides
     @ActivityScope

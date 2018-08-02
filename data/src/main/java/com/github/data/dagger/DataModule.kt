@@ -15,10 +15,12 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 class DataModule {
 
+    @Singleton
     @Provides
     fun provideCommentRepository(
             dbDao: DbDao,
@@ -27,6 +29,7 @@ class DataModule {
         return CommentRepository(dbDao, api)
     }
 
+    @Singleton
     @Provides
     fun providePostRepository(
             dbDao: DbDao,
@@ -35,6 +38,7 @@ class DataModule {
         return PostRepository(dbDao, api)
     }
 
+    @Singleton
     @Provides
     fun provideUserRepository(
             dbDao: DbDao,
@@ -43,6 +47,7 @@ class DataModule {
         return UserRepository(dbDao, api)
     }
 
+    @Singleton
     @Provides
     fun provideDbDao(
             database: Database
@@ -50,6 +55,7 @@ class DataModule {
         return database.createDbDao()
     }
 
+    @Singleton
     @Provides
     fun provideDatabase(
             @Named("application") appContext: Context
@@ -60,6 +66,7 @@ class DataModule {
                 DATABASE_NAME).build()
     }
 
+    @Singleton
     @Provides
     fun provideApi(
             client: OkHttpClient
@@ -73,6 +80,7 @@ class DataModule {
                 .create(Api::class.java)
     }
 
+    @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder().build()

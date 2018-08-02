@@ -1,6 +1,6 @@
-package com.github.presentation.dagger
+package com.github.presentation.activity.dagger
 
-import com.github.presentation.MainActivity
+import com.github.presentation.activity.MainActivity
 import com.github.presentation.screens.posts.dagger.PostsComponent
 import com.github.scopes.ActivityScope
 import dagger.Subcomponent

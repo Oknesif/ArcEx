@@ -26,11 +26,14 @@ class PostInteractor(
             users: List<UserData>): List<Post> {
         val resultList = mutableListOf<Post>()
         for (postData in posts) {
-            val userName = users.find { it.id == postData.userId }?.name
+            val user = users.find { it.id == postData.userId }
+            val userName = user?.name
             val postBody = postData.body
-            if (userName != null && postBody != null) {
-                resultList.add(Post(userName, postBody))
+            val userId = user?.id
+            if (userName != null && postBody != null && userId != null) {
+                resultList.add(Post(userName, postBody, userId.toString()))
             } else {
+                //here could be some kind of analytic event
                 Log.d("PostInteractor", "Invalid data")
             }
         }

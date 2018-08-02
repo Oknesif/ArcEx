@@ -2,7 +2,7 @@
     package="com.github.presentation">
 
     <application>
-        <activity android:name="com.github.presentation.MainActivity">
+        <activity android:name="com.github.presentation.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

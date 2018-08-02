@@ -8,10 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.github.domain.enteties.Post
 import com.github.presentation.R
+import com.github.presentation.image.loading.AvatarLoader
 
 class PostAdapter(
         val items: MutableList<Post> = mutableListOf(),
-        private val layoutInflater: LayoutInflater
+        private val avatarLoader: AvatarLoader,
+        private val layoutInflater: LayoutInflater,
+        private val itemClickListener: (post: Post) -> Unit
 ) : RecyclerView.Adapter<PostViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -27,11 +30,13 @@ class PostAdapter(
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val item = items[position]
         holder.bodyText.text = item.body
+        holder.view.setOnClickListener { itemClickListener(items[holder.adapterPosition]) }
+        avatarLoader.loadAvatar(item.userId, holder.imageView)
     }
 }
 
 class PostViewHolder(
-        view: View,
+        val view: View,
         val bodyText: TextView = view.findViewById(R.id.text_body),
         val imageView: ImageView = view.findViewById(R.id.image_view)
 ) : RecyclerView.ViewHolder(view)

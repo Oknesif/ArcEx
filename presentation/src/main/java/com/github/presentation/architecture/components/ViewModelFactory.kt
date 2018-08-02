@@ -1,11 +1,7 @@
-package com.github.presentation
+package com.github.presentation.architecture.components
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.View
 import io.reactivex.disposables.Disposable
 
 class ViewModelFactory : ViewModelProvider.Factory {
