@@ -17,8 +17,6 @@ class PostsFragment : BaseFragment() {
     @Inject
     lateinit var state: Subject<PostsState>
     @Inject
-    lateinit var avatarLoader: AvatarLoader
-    @Inject
     lateinit var events: Subject<AppEvent>
 
     override fun onInject() {
@@ -34,7 +32,6 @@ class PostsFragment : BaseFragment() {
                 view = view,
                 inflater = layoutInflater,
                 state = state,
-                avatarLoader = avatarLoader,
                 eventObserver = events)
     }
 

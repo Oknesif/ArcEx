@@ -26,12 +26,10 @@ class PostInteractor @Inject constructor(
                 postRepository.getPosts(),
                 userRepository.getUsers(),
                 commentsRepository.getComments(),
-                Function3 { posts, users, comments ->
-                    joinPostWithUser(posts, users, comments)
-                })
+                Function3 { posts, users, comments -> joinData(posts, users, comments) })
     }
 
-    private fun joinPostWithUser(
+    private fun joinData(
             posts: List<PostData>,
             users: List<UserData>,
             commentsData: List<CommentData>): List<Post> {
