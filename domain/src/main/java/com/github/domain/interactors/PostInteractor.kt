@@ -9,12 +9,12 @@ import com.github.data.repositories.PostRepository
 import com.github.data.repositories.UserRepository
 import com.github.domain.enteties.Comment
 import com.github.domain.enteties.Post
-import com.github.scopes.ActivityScope
+import com.github.scopes.AppScope
 import io.reactivex.Single
 import io.reactivex.functions.Function3
 import javax.inject.Inject
 
-@ActivityScope
+@AppScope
 class PostInteractor @Inject constructor(
         private val postRepository: PostRepository,
         private val userRepository: UserRepository,

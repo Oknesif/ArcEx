@@ -7,6 +7,7 @@ import android.arch.persistence.room.Query
 import com.github.data.entities.CommentData
 import com.github.data.entities.PostData
 import com.github.data.entities.UserData
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 @Dao
@@ -28,4 +29,7 @@ interface DbDao {
 
     @Query("SELECT * FROM postData")
     fun getPosts(): Single<List<PostData>>
+
+    @Query("SELECT * from postData where id = :id LIMIT 1")
+    fun getPost(id: Int): Flowable<PostData>
 }

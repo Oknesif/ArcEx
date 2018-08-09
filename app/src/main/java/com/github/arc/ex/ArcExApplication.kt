@@ -9,7 +9,7 @@ import com.github.presentation.activity.dagger.ActivityComponent
 import com.github.presentation.activity.dagger.ActivityComponentCreator
 import com.github.presentation.activity.dagger.ActivityModule
 
-class ArcExApplication : Application(), ActivityComponentCreator {
+class ArcExApplication : Application() {
 
     override fun createActivityComponent(activityModule: ActivityModule): ActivityComponent {
         return appComponent

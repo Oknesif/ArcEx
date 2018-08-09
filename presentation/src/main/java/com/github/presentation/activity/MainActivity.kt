@@ -12,7 +12,7 @@ import com.github.presentation.screens.posts.PostsFragment
 class MainActivity : AppCompatActivity() {
 
     val activityComponent: ActivityComponent by lazy {
-        (application as ActivityComponentCreator).createActivityComponent(ActivityModule(this))
+        (application as ActivityComponentCreator).provideAppComponent(ActivityModule(this))
     }
 
     private lateinit var container: ViewGroup

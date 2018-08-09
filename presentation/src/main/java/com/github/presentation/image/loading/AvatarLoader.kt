@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.res.Resources
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.github.scopes.ActivityScope
+import com.github.scopes.AppScope
 import javax.inject.Inject
 
-@ActivityScope
+@AppScope
 class AvatarLoader @Inject constructor(
         private val activity: Activity
 ) {

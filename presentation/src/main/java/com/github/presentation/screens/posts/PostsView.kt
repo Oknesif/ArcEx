@@ -8,7 +8,6 @@ import android.view.View
 import com.github.presentation.R
 import com.github.presentation.architecture.components.AppEvent
 import com.github.presentation.architecture.components.Subscribable
-import com.github.presentation.image.loading.AvatarLoader
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.Subject
@@ -23,9 +22,7 @@ class PostsView(
     private val progress: View = view.findViewById(R.id.progress)
     private val adapter: PostsAdapter = PostsAdapter(
             layoutInflater = inflater
-    ) { post ->
-        //        eventObserver.onNext(post)
-    }
+    ) { post -> eventObserver.onNext(PostClickEvent(post)) }
 
     init {
         val context = view.context
