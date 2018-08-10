@@ -14,7 +14,7 @@ interface ActivityComponent {
 
     fun postsComponent(): PostsComponent.Builder
 
-    fun postsDetailsComponent(): PostDetailsComponent.Builder
+    fun postDetailsComponent(): PostDetailsComponent.Builder
 
     @Subcomponent.Builder
     interface Builder {

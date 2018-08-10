@@ -1,6 +1,7 @@
 package com.github.presentation.screens.posts.dagger
 
-import com.github.presentation.screens.posts.PostsFragment
+import com.github.presentation.screens.posts.PostsView
+import com.github.presentation.screens.posts.PostsViewModel
 import com.github.scopes.FragmentScope
 import dagger.Subcomponent
 
@@ -8,7 +9,8 @@ import dagger.Subcomponent
 @Subcomponent(modules = [PostsModule::class])
 interface PostsComponent {
 
-    fun inject(postsFragment: PostsFragment)
+    fun inject(postsFragment: PostsViewModel)
+    fun inject(postsFragment: PostsView)
 
     @Subcomponent.Builder
     interface Builder {

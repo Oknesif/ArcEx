@@ -1,5 +1,7 @@
 package com.github.presentation.architecture.components
 
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.annotation.LayoutRes
@@ -9,26 +11,22 @@ import android.view.View
 import android.view.ViewGroup
 import io.reactivex.disposables.Disposable
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<T : ViewModel> : Fragment() {
 
     private var viewDisposable: Disposable? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        onInject()
-        ViewModelProviders.of(this, ViewModelFactory())
-                .get(FragmentModel::class.java)
-                .init { createUseCase().subscribe() }
-    }
 
     /**
      * UseCase disposable lives longer than ViewDisposable
      */
-    abstract fun createUseCase(): Subscribable
+    abstract fun createViewModel(): T
 
     abstract fun createView(view: View): Subscribable
 
-    abstract fun onInject()
+    fun getViewModel(): T {
+        return ViewModelProviders
+                .of(this, Factory())
+                .get(ViewModel::class.java) as T
+    }
 
     @LayoutRes
     abstract fun provideLayoutId(): Int
@@ -45,5 +43,11 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         viewDisposable?.dispose()
+    }
+
+    private inner class Factory : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return createViewModel() as T
+        }
     }
 }
