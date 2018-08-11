@@ -1,32 +1,41 @@
 package com.github.presentation.screens.post.details
 
+import android.arch.lifecycle.ViewModelProviders
+import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.github.presentation.R
 import com.github.presentation.activity.MainActivity
-import com.github.presentation.architecture.components.BaseFragment
-import com.github.presentation.architecture.components.Subscribable
-import io.reactivex.subjects.Subject
-import javax.inject.Inject
+import com.github.presentation.activity.dagger.ActivityComponent
+import com.github.presentation.architecture.components.ViewModelFactory
+import io.reactivex.disposables.Disposable
 
 class PostDetailsFragment : Fragment() {
 
-    @Inject
-    lateinit var stateObservable: Subject<PostDetailsState>
-    @Inject
-    lateinit var postDetailsUseCase: PostDetailsUseCase
+    private var viewDisposable: Disposable? = null
+    private lateinit var viewModel: PostDetailsViewModel
 
-//    override fun onInject() {
-//        (activity as MainActivity).getActivityComponent()
-//                .postDetailsComponent()
-//                .postDetailsModule(PostDetailsModule())
-//                .build()
-//                .inject(this)
-//    }
-//
-//    override fun provideLayoutId(): Int = R.layout.post_details_fragment
-//
-//    override fun createUseCase(): Subscribable = postDetailsUseCase
-//
-//    override fun createView(view: View): Subscribable = PostDetailsView(view, stateObservable)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val activityComponent: ActivityComponent = (activity as MainActivity).getActivityComponent()
+        viewModel = ViewModelProviders
+                .of(this, ViewModelFactory(activityComponent))
+                .get(PostDetailsViewModel::class.java)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.post_details_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewDisposable = PostDetailsView(view, viewModel.postDetailsComponent).subscribe()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewDisposable?.dispose()
+    }
 }

@@ -6,7 +6,8 @@ import dagger.Subcomponent
 @FragmentScope
 @Subcomponent(modules = [PostDetailsModule::class])
 interface PostDetailsComponent {
-    fun inject(postDetailsFragment: PostDetailsFragment)
+    fun inject(postDetailsFragment: PostDetailsViewModel)
+    fun inject(postDetailsFragment: PostDetailsView)
 
     @Subcomponent.Builder
     interface Builder {

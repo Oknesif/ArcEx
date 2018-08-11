@@ -8,6 +8,7 @@ import com.github.presentation.screens.posts.dagger.PostsComponent
 import com.github.scopes.AppScope
 import dagger.Module
 import dagger.Provides
+import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
@@ -22,6 +23,10 @@ class ActivityModule {
     @Provides
     @AppScope
     fun provideEventObserver(subject: Subject<AppEvent>): Observer<AppEvent> = subject
+
+    @Provides
+    @AppScope
+    fun provideEventObservable(subject: Subject<AppEvent>): Observable<AppEvent> = subject
 
     @Provides
     @AppScope
