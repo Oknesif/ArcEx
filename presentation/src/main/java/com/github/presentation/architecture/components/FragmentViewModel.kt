@@ -1,7 +1,6 @@
-package com.github.presentation.screens.post.details
+package com.github.presentation.architecture.components
 
 import android.arch.lifecycle.ViewModel
-import com.github.presentation.architecture.components.Subscriber
 import io.reactivex.disposables.Disposable
 
 class FragmentViewModel<T>(

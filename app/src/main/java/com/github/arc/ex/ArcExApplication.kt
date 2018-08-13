@@ -5,21 +5,11 @@ import com.github.arc.ex.dagger.AppComponent
 import com.github.arc.ex.dagger.AppModule
 import com.github.arc.ex.dagger.DaggerAppComponent
 import com.github.data.dagger.DataModule
-import com.github.presentation.architecture.components.ComponentProvider
-import com.github.presentation.screens.post.details.PostDetailsComponent
-import com.github.presentation.screens.posts.PostsComponent
+import com.github.presentation.architecture.components.AppComponentHolder
 
-class ArcExApplication : Application(), ComponentProvider {
+class ArcExApplication : Application(), AppComponentHolder {
 
-    override fun postsComponent(): PostsComponent.Builder {
-        return appComponent.postsComponent()
-    }
-
-    override fun postDetailsComponent(): PostDetailsComponent.Builder {
-        return appComponent.postDetailsComponent()
-    }
-
-    private val appComponent: AppComponent by lazy {
+    override val componentProvider: AppComponent by lazy {
         DaggerAppComponent
                 .builder()
                 .appModule(AppModule(this.applicationContext))
