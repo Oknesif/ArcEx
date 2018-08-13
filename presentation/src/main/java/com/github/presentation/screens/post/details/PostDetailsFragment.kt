@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import com.github.presentation.R
 import com.github.presentation.architecture.components.BaseFragment
-import com.github.presentation.architecture.components.Subscriber
 import com.github.presentation.architecture.components.ComponentProvider
+import com.github.presentation.architecture.components.Subscriber
 
 class PostDetailsFragment : BaseFragment<PostDetailsComponent>() {
 
@@ -29,9 +29,11 @@ class PostDetailsFragment : BaseFragment<PostDetailsComponent>() {
     ): PostDetailsComponent {
         return screensComponent
                 .postDetailsComponent()
-                .postDetailsModule(PostDetailsModule()) //TODO I could use params to set them to Module :)
+                .postDetailsModule(PostDetailsModule(arguments!!.getInt(POST_ID)))
                 .build()
     }
 
     override fun provideLayoutId(): Int = R.layout.post_details_fragment
 }
+
+const val POST_ID = "POST_ID"

@@ -10,6 +10,10 @@ class PostRepository(
         private val api: Api
 ) {
 
+    fun getPost(id: Int): Single<PostData> {
+        return dbDao.getPost(id)
+    }
+
     fun getPosts(): Single<List<PostData>> {
         return dbDao.getPosts()
                 .map { if (it.isEmpty()) throw NoSuchElementException() else it }

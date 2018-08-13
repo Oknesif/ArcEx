@@ -10,6 +10,10 @@ class CommentsRepository(
         private val api: Api
 ) {
 
+    fun getComments(postId: Int): Single<List<CommentData>> {
+        return dbDao.getComments(postId)
+    }
+
     fun getComments(): Single<List<CommentData>> {
         return dbDao.getComments()
                 .map { if (it.isEmpty()) throw NoSuchElementException() else it }

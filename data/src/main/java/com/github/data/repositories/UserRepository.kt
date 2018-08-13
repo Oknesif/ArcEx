@@ -10,6 +10,10 @@ class UserRepository(
         private val api: Api
 ) {
 
+    fun getUser(id: Int): Single<UserData> {
+        return dbDao.getUser(id)
+    }
+
     fun getUsers(): Single<List<UserData>> {
         return dbDao.getUsers()
                 .map { if (it.isEmpty()) throw NoSuchElementException() else it }

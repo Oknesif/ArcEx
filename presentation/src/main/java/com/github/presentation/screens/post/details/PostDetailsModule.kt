@@ -8,7 +8,13 @@ import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.Subject
 
 @Module
-class PostDetailsModule {
+class PostDetailsModule(
+        private val postId: Int
+) {
+
+    @Provides
+    @FragmentScope
+    fun providePostId(): Int = postId
 
     @Provides
     @FragmentScope
