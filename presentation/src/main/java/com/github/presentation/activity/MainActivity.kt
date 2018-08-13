@@ -43,11 +43,9 @@ class MainActivity : AppCompatActivity() {
 private class ActivityViewModel(
         application: Application
 ) : ViewModel() {
-
     val activityComponent: ActivityComponent by lazy {
         (application as ActivityComponentCreator).createActivityComponent(ActivityModule())
     }
-
 }
 
 

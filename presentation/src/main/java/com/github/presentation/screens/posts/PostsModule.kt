@@ -1,4 +1,4 @@
-package com.github.presentation.screens.posts.dagger
+package com.github.presentation.screens.posts
 
 import com.github.presentation.screens.posts.PostsState
 import com.github.scopes.FragmentScope

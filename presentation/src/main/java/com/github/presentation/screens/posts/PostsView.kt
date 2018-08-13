@@ -8,7 +8,6 @@ import android.view.View
 import com.github.presentation.R
 import com.github.presentation.architecture.components.AppEvent
 import com.github.presentation.architecture.components.Subscriber
-import com.github.presentation.screens.posts.dagger.PostsComponent
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.Subject

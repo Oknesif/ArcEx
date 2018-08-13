@@ -19,11 +19,17 @@ abstract class BaseFragment<T> : Fragment() {
     private var viewDisposable: Disposable? = null
     private var component: T? = null
 
+    abstract fun createComponent(
+            activityComponent: ActivityComponent,
+            savedInstanceState: Bundle?
+    ): T
+
+    @LayoutRes
+    abstract fun provideLayoutId(): Int
+
     abstract fun createViewSubscriber(view: View, component: T): Subscriber
 
     abstract fun createUseCaseSubscriber(component: T): Subscriber
-
-    abstract fun createComponent(activityComponent: ActivityComponent): T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +40,7 @@ abstract class BaseFragment<T> : Fragment() {
                             .getActivityComponent()
 
                     override fun <R : ViewModel?> create(modelClass: Class<R>): R {
-                        val component = createComponent(activityComponent)
+                        val component = createComponent(activityComponent, savedInstanceState)
                         val useCase = createUseCaseSubscriber(component)
                         return FragmentViewModel(component, useCase) as R
                     }
@@ -42,9 +48,6 @@ abstract class BaseFragment<T> : Fragment() {
                 .get(FragmentViewModel::class.java)
                 .component as T
     }
-
-    @LayoutRes
-    abstract fun provideLayoutId(): Int
 
     override fun onCreateView(
             inflater: LayoutInflater,

@@ -4,7 +4,7 @@ import com.github.presentation.architecture.components.AppEvent
 import com.github.presentation.reactivex.ArcSchedulers
 import com.github.presentation.reactivex.ArcSchedulersImp
 import com.github.presentation.screens.post.details.PostDetailsComponent
-import com.github.presentation.screens.posts.dagger.PostsComponent
+import com.github.presentation.screens.posts.PostsComponent
 import com.github.scopes.AppScope
 import dagger.Module
 import dagger.Provides
