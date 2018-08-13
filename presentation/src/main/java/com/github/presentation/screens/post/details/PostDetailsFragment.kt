@@ -3,9 +3,9 @@ package com.github.presentation.screens.post.details
 import android.os.Bundle
 import android.view.View
 import com.github.presentation.R
-import com.github.presentation.activity.dagger.ActivityComponent
 import com.github.presentation.architecture.components.BaseFragment
 import com.github.presentation.architecture.components.Subscriber
+import com.github.presentation.architecture.components.ComponentProvider
 
 class PostDetailsFragment : BaseFragment<PostDetailsComponent>() {
 
@@ -24,10 +24,10 @@ class PostDetailsFragment : BaseFragment<PostDetailsComponent>() {
     }
 
     override fun createComponent(
-            activityComponent: ActivityComponent,
+            screensComponent: ComponentProvider,
             savedInstanceState: Bundle?
     ): PostDetailsComponent {
-        return activityComponent
+        return screensComponent
                 .postDetailsComponent()
                 .postDetailsModule(PostDetailsModule()) //TODO I could use params to set them to Module :)
                 .build()

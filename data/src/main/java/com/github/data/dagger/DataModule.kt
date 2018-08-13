@@ -8,6 +8,7 @@ import com.github.data.remote.Api
 import com.github.data.repositories.CommentsRepository
 import com.github.data.repositories.PostRepository
 import com.github.data.repositories.UserRepository
+import com.github.scopes.AppScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -20,7 +21,7 @@ import javax.inject.Singleton
 @Module
 class DataModule {
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideCommentRepository(
             dbDao: DbDao,
@@ -29,7 +30,7 @@ class DataModule {
         return CommentsRepository(dbDao, api)
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun providePostRepository(
             dbDao: DbDao,
@@ -38,7 +39,7 @@ class DataModule {
         return PostRepository(dbDao, api)
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideUserRepository(
             dbDao: DbDao,
@@ -47,7 +48,7 @@ class DataModule {
         return UserRepository(dbDao, api)
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideDbDao(
             database: Database
@@ -55,10 +56,10 @@ class DataModule {
         return database.createDbDao()
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideDatabase(
-            @Named("application") appContext: Context
+            appContext: Context
     ): Database {
         return Room.databaseBuilder(
                 appContext,
@@ -66,7 +67,7 @@ class DataModule {
                 DATABASE_NAME).build()
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideApi(
             client: OkHttpClient
@@ -80,7 +81,7 @@ class DataModule {
                 .create(Api::class.java)
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder().build()

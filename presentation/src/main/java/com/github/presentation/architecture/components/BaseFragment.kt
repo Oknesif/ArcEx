@@ -9,8 +9,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.presentation.activity.MainActivity
-import com.github.presentation.activity.dagger.ActivityComponent
 import com.github.presentation.screens.post.details.FragmentViewModel
 import io.reactivex.disposables.Disposable
 
@@ -20,7 +18,7 @@ abstract class BaseFragment<T> : Fragment() {
     private var component: T? = null
 
     abstract fun createComponent(
-            activityComponent: ActivityComponent,
+            screensComponent: ComponentProvider,
             savedInstanceState: Bundle?
     ): T
 
@@ -36,11 +34,10 @@ abstract class BaseFragment<T> : Fragment() {
 
         component = ViewModelProviders
                 .of(this, object : ViewModelProvider.Factory {
-                    private val activityComponent = (activity as MainActivity)
-                            .getActivityComponent()
+                    private val componentProvider = (activity?.application as ComponentProvider)
 
                     override fun <R : ViewModel?> create(modelClass: Class<R>): R {
-                        val component = createComponent(activityComponent, savedInstanceState)
+                        val component = createComponent(componentProvider, savedInstanceState)
                         val useCase = createUseCaseSubscriber(component)
                         return FragmentViewModel(component, useCase) as R
                     }

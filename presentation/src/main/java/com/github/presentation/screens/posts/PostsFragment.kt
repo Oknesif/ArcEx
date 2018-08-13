@@ -3,17 +3,17 @@ package com.github.presentation.screens.posts
 import android.os.Bundle
 import android.view.View
 import com.github.presentation.R
-import com.github.presentation.activity.dagger.ActivityComponent
 import com.github.presentation.architecture.components.BaseFragment
 import com.github.presentation.architecture.components.Subscriber
+import com.github.presentation.architecture.components.ComponentProvider
 
 class PostsFragment : BaseFragment<PostsComponent>() {
 
     override fun createComponent(
-            activityComponent: ActivityComponent,
+            screensComponent: ComponentProvider,
             savedInstanceState: Bundle?
     ): PostsComponent {
-        return activityComponent
+        return screensComponent
                 .postsComponent()
                 .build()
     }

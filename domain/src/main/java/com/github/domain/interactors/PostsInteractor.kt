@@ -15,7 +15,7 @@ import io.reactivex.functions.Function3
 import javax.inject.Inject
 
 @AppScope
-class PostInteractor @Inject constructor(
+class PostsInteractor @Inject constructor(
         private val postRepository: PostRepository,
         private val userRepository: UserRepository,
         private val commentsRepository: CommentsRepository
@@ -27,6 +27,7 @@ class PostInteractor @Inject constructor(
                 userRepository.getUsers(),
                 commentsRepository.getComments(),
                 Function3 { posts, users, comments -> joinData(posts, users, comments) })
+
     }
 
     private fun joinData(

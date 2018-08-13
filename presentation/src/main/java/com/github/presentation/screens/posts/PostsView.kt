@@ -1,5 +1,6 @@
 package com.github.presentation.screens.posts
 
+import android.support.v4.widget.ContentLoadingProgressBar
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -24,7 +25,7 @@ class PostsView(
     lateinit var eventObserver: Observer<AppEvent>
 
     private val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
-    private val progress: View = view.findViewById(R.id.progress)
+    private val progress: ContentLoadingProgressBar = view.findViewById(R.id.progress)
     private val adapter: PostsAdapter = PostsAdapter(
             layoutInflater = LayoutInflater.from(view.context)
     ) { post -> eventObserver.onNext(PostClickEvent(post)) }
@@ -39,15 +40,15 @@ class PostsView(
 
     override fun subscribe(): Disposable {
         return state.subscribe {
-            val unit = when (it) {
+            return@subscribe when (it) {
                 is PostsState.ShowPosts -> {
                     adapter.items.addAll(it.posts)
                     adapter.notifyDataSetChanged()
-                    progress.visibility = View.GONE
+                    progress.hide()
                     recyclerView.visibility = View.VISIBLE
                 }
                 is PostsState.Loading -> {
-                    progress.visibility = View.VISIBLE
+                    progress.show()
                     recyclerView.visibility = View.INVISIBLE
                 }
             }
