@@ -1,6 +1,6 @@
 package com.github.presentation.activity
 
-import android.annotation.SuppressLint
+import android.app.Application
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -30,21 +30,24 @@ class MainActivity : AppCompatActivity() {
 
     fun getActivityComponent(): ActivityComponent = ViewModelProviders
             .of(this, Factory())
-            .get(ActivityViewModel()::class.java)
+            .get(ActivityViewModel::class.java)
             .activityComponent
 
     private inner class Factory : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return ActivityViewModel() as T
+            return ActivityViewModel(application) as T
         }
+    }
+}
+
+private class ActivityViewModel(
+        application: Application
+) : ViewModel() {
+
+    val activityComponent: ActivityComponent by lazy {
+        (application as ActivityComponentCreator).createActivityComponent(ActivityModule())
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private inner class ActivityViewModel : ViewModel() {
-        val activityComponent: ActivityComponent by lazy {
-            (application as ActivityComponentCreator).createActivityComponent(ActivityModule())
-        }
-    }
 }
 
 

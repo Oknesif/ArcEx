@@ -2,12 +2,15 @@ package com.github.presentation.screens.post.details
 
 import com.github.scopes.FragmentScope
 import dagger.Subcomponent
+import io.reactivex.Observable
 
 @FragmentScope
 @Subcomponent(modules = [PostDetailsModule::class])
 interface PostDetailsComponent {
-    fun inject(postDetailsFragment: PostDetailsViewModel)
-    fun inject(postDetailsFragment: PostDetailsView)
+
+    fun getUseCase(): PostDetailsUseCase
+
+    fun getState(): Observable<PostDetailsState>
 
     @Subcomponent.Builder
     interface Builder {
