@@ -12,7 +12,7 @@ dependencies {
             androidArchDependencies.roomRx2,
             rxJavaDependencies.main,
             retrofitDependencies.main,
-            retrofitDependencies.gson,
+            retrofitDependencies.moshi,
             retrofitDependencies.rxJavaAdapter,
             okHttpDependency
     )
