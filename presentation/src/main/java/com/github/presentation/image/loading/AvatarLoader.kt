@@ -1,16 +1,13 @@
 package com.github.presentation.image.loading
 
 import android.content.res.Resources
-import android.support.v4.app.Fragment
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.github.scopes.FragmentScope
 import javax.inject.Inject
 
 @FragmentScope
-class AvatarLoader @Inject constructor(
-        private val fragment: Fragment
-) {
+class AvatarLoader @Inject constructor() {
 
     private val avatarSize: Int by lazy {
         (Resources.getSystem().displayMetrics.density * IMAGE_SIZE).toInt()
@@ -22,7 +19,9 @@ class AvatarLoader @Inject constructor(
 
     fun loadAvatar(id: String, into: ImageView) {
         val url = createAdorableUrl(id)
-        Glide.with(fragment).load(url).into(into)
+        Glide.with(into.context)
+                .load(url)
+                .into(into)
     }
 }
 

@@ -10,7 +10,7 @@ interface PostDetailsComponent {
 
     fun getUseCase(): PostDetailsUseCase
 
-    fun getState(): Observable<PostDetailsState>
+    fun inject(postDetailsView: PostDetailsView)
 
     @Subcomponent.Builder
     interface Builder {

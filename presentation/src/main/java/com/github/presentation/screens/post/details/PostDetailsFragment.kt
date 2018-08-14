@@ -13,8 +13,7 @@ class PostDetailsFragment : BaseFragment<PostDetailsComponent>() {
             view: View,
             component: PostDetailsComponent
     ): Subscriber {
-        val state = component.getState()
-        return PostDetailsView(view, state)
+        return PostDetailsView(view, component)
     }
 
     override fun createUseCaseSubscriber(
